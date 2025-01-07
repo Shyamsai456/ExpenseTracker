@@ -1,0 +1,66 @@
+﻿@model Trail.Category
+
+@{
+    ViewData["PageTitle"] = Model.CategoryID == 0 ? "Create New Category" : "Edit Category";
+}
+
+
+<hr />
+<div class="row">
+    <div class="col-md-7">
+        <div class="widget p-5">
+            <form asp-action="AddOrEdit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" name="CategoryID" value="@Model.CategoryID" />
+                <div class="mb-3">
+                    <div class='e-btn-group custom-rbt-group'>
+                        <input type="radio" id="radioleft" name="Type" value="Expense" checked="@(Model.Type == "Expense")" />
+                        <label class="e-btn" for="radioleft">Expense</label>
+                        <input type="radio" id="radiomiddle" name="Type" value="Income" checked="@(Model.Type == "Income")" />
+                        <label class="e-btn" for="radiomiddle">Income</label>
+
+                    </div>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    @*  <label asp-for="CategoryName" class="control-label"></label>
+                 <input asp-for="CategoryName" class="form-control" /> *@
+                    <ejs-textbox id="categoryName" placeholder="Category Name" ejs-for="CategoryName" floatLabelType="Always"></ejs-textbox>
+                    <span asp-validation-for="CategoryName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    @* <label asp-for="CategoryDescription" class="control-label"></label>
+                 <input asp-for="CategoryDescription" class="form-control" /> *@
+                    <ejs-textbox id="categoryDescription" placeholder="Category Description" ejs-for="CategoryDescription" floatLabelType="Always"></ejs-textbox>
+                    <span asp-validation-for="CategoryDescription" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    @* <label asp-for="Icon" class="control-label"></label>
+                 <input asp-for="Icon" class="form-control" /> *@
+                    <ejs-textbox id="icon" placeholder="Icon" ejs-for="Icon" floatLabelType="Always"></ejs-textbox>
+
+                    <span asp-validation-for="Icon" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    @* <input type="submit" value="Create" class="btn btn-primary" /> *@
+                    <ejs-button id="submit" cssClass="e-success" content="Submit"></ejs-button>
+
+                </div>
+            </form>
+        </div>
+       
+    </div>
+    <div class="col-md-5">
+        <div class="widget h-100 d-flex justify-content-center align-items-center">
+            <i class="fa-solid fa-shapes fa-2xl"></i>
+        </div>
+    </div>
+   
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
